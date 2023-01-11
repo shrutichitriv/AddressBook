@@ -34,6 +34,7 @@ namespace AddressBook_244
                 Console.WriteLine($" Email :: {item.Value.eMail} ");
             }
         }
+
         public void EditContact(string name)
         {
             foreach (var item in addressBookMap)
@@ -82,5 +83,18 @@ namespace AddressBook_244
                 }
             }
         }
+
+        public void RemoveContact(string key)
+        {
+            foreach (var item in addressBookMap)
+            {
+                if (item.Key == key)
+                {
+                    addressBookMap.Remove(item.Key);
+                }
+            }
+        }
+
+
     }
 }
