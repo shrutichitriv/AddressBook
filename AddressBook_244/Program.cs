@@ -8,131 +8,58 @@
 
             Console.WriteLine("Welcome To Address Book Problem");
 
-            ////AdressBookBuilder adressBookBuilder = new AdressBookBuilder();
-            ////adressBookBuilder.AddAdressBook("Ram", "Sharma", "Sadar", "Nagpur", "Maharashtra", "440009", "7973455678", "Ram199@gmail.com");
-            ////adressBookBuilder.DisplayAddressBook();
 
-            //AdressBookBuilder adressBookBuilder = new AdressBookBuilder();
-
-            //bool check = true;
-            //while (check)
-            //{
-
-            //    Console.WriteLine("Enter First Name");
-            //    string firstName = Console.ReadLine();
-
-            //    Console.WriteLine("Enter Last Name");
-            //    string lastName = Console.ReadLine();
-
-            //    Console.WriteLine("Enter Address");
-            //    string address = Console.ReadLine();
-
-            //    Console.WriteLine("Enter City Name");
-            //    string city = Console.ReadLine();
-
-
-            //    Console.WriteLine("Enter State Name");
-            //    string state = Console.ReadLine();
-
-            //    Console.WriteLine("Enter  Zip number");
-            //    string zip = Console.ReadLine();
-
-            //    Console.WriteLine("Enter Phone Number");
-            //    string pnoneNumber = Console.ReadLine();
-
-            //    Console.WriteLine("Enter Email");
-            //    string email = Console.ReadLine();
-
-            //    adressBookBuilder.AddAdressBook(firstName, lastName, address, city, state, zip, pnoneNumber, email);
-
-            //    Console.WriteLine("If you want to add another Enter Y ");
-            //    string addOrNot = Console.ReadLine().ToLower();
-
-            //    if (addOrNot == "y")
-            //    {
-            //        check = true;
-            //    }
-            //    else
-            //    {
-            //        check = false;
-            //    }
-            //}
-            //adressBookBuilder.DisplayAddressBook();
-
-
-            ////AdressBookBuilder adressBookBuilder = new AdressBookBuilder();
-
-            ////adressBookBuilder.AddAdressBook("Amit", "Roy", "Ram nagar", "Dknl", "Kolkata", "759022", "7978861488", "amit@gmail.com");
-            ////adressBookBuilder.AddAdressBook("Raj", "Kumar", "Jatpura", "Fshh", "Raipur", "759023", "7978861434", "raj@gmail.com");
-            ////adressBookBuilder.AddAdressBook("Mamta", "Shah", "Gandhibagh", "Ghji", "Kolhapur", "759024", "7978861484", "mamta@gmail.com");
-            ////adressBookBuilder.AddAdressBook("Mayank", "Kapoor", "Nagar", "Dfgh", "Satara", "759025", "7978861485", "mayank@gmail.com");
-            ////adressBookBuilder.DisplayAddressBook();
-
-
-            //////For Editiang A Person Contact Details
-
-            ////Console.WriteLine("Enter a person name u want to Edit Details");
-            ////string editName = Console.ReadLine();
-            ////adressBookBuilder.EditContact(editName);
-            ////adressBookBuilder.DisplayAddressBook();
-
-            //Console.WriteLine("Choose : \n1) To Edit A Contact Details\n2) To Delete A Contact Details");
-            //int choice = Convert.ToInt32(Console.ReadLine());
-
-            //switch (choice)
-            //{
-            //    case 1:
-            //        //For Editiang A Person Contact Details
-            //        Console.WriteLine("Enter a person name u want to Edit Details");
-            //        string editName = Console.ReadLine();
-            //        adressBookBuilder.EditContact(editName);
-            //        adressBookBuilder.DisplayAddressBook();
-            //        break;
-            //    case 2:
-            //        //For Deleate A Person Contact Details
-            //        Console.WriteLine("Enter a person name u want to remove");
-            //        string name = Console.ReadLine();
-            //        adressBookBuilder.RemoveContact(name);
-            //        adressBookBuilder.DisplayAddressBook();
-            //        break;
-            //    default:
-            //        Console.WriteLine("Please Choose 1 for Edit Or 2 for Delete");
-            //        break;
-            //}
-
-
-            AddressBookMain createContact = new AddressBookMain();
+            AddressBookMain addingContact = new AddressBookMain();
             bool end = true;
-            while (true)
+            while (end)
             {
-                Console.WriteLine("Choose an option to execute the program : \n1. Add a contact\n2. Display contact\n3." +
-                    " Edit a contact\n4. Delete a contact\n5. End the program");
+                Console.WriteLine("Choose an option to execute :\n1. Create Contact\n2. Add Contact\n3. Edit Contact\n4." +
+                    " Delete Contact\n5. View Contact\n6. Restricting Duplicate Contact\n7. End The Program");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
                     case 1:
-                        createContact.CreateContact();
+                        addingContact.AddContact();
+                        Console.WriteLine("Contact has created");
                         break;
                     case 2:
-                        createContact.Display();
+                        addingContact.AddContact();
+                        Console.WriteLine("Contact has added ");
+                        addingContact.Display();
                         break;
                     case 3:
-                        createContact.EditContact();
+                        addingContact.EditContact();
                         break;
                     case 4:
-                        createContact.DeleteContact();
+                        addingContact.DeleteContact();
                         break;
                     case 5:
-                        createContact.ViewContact();
+                        addingContact.ViewContact();
                         break;
                     case 6:
+                        AdressBookBuilder studentAddressBook = new AdressBookBuilder();
+                        studentAddressBook.AddDetails("Engineer", "Sartaj", "Khan", "Whitefield", "Nagpur", "Maharashtra", 4400002, 9424777313, "sartajikhan786@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Abhishek", "Jadhav", "Bandra", "Mumbai", "Maharashtra", 560464, 1236547899, "sartajikhan786@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Shivraj", "Gawda", "Malleshwaram", "Bengaluru", "karnataka", 560066, 9424464313, "sartajikhan786@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Rajesh", "Singh", "GTNagar", "pune", "Maharashtra", 564566, 9433777313, "sartajikhan786@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Vivek", "Singh", "HSR", "Bengaluru", "karnataka", 560996, 9424777315, "sartajikhan786@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Siddhant", "Singh", "City Centre", "Noida", "U.P.", 458963, 9425477313, "sartajikhan786@gmail.com");
+                        Console.WriteLine("Enter Engineer Address Book Name : ");
+                        string addressBook = Console.ReadLine();
+                        studentAddressBook.AddressBook(addressBook);
+                        studentAddressBook.ComputeDetails();
+                        studentAddressBook.Search();
+                        studentAddressBook.Count();
+                        break;
+                    case 7:
                         end = false;
                         break;
                     default:
-                        Console.WriteLine("Incorrect Option ");
+                        Console.WriteLine("Invalid option ");
                         break;
                 }
             }
+
         }
     }
 }

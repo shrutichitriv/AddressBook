@@ -1,31 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AddressBook_244
 {
-    //class Model
-    //{
-    //    public string firstName;
-    //    public string lastName;
-    //    public string address;
-    //    public string city;
-    //    public string state;
-    //    public string zip;
-    //    public string phoneNumber;
-    //    public string eMail;
-    //    public Model(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string eMail)
-    //    {
-    //        this.firstName = firstName;
-    //        this.lastName = lastName;
-    //        this.address = address;
-    //        this.city = city;
-    //        this.state = state;
-    //        this.zip = zip;
-    //        this.phoneNumber = phoneNumber;
-    //        this.eMail = eMail;
-    //    }
-    //
+    public class Model
+    {
+        public string FirstName;
+        public string LastName;
+        public string Address;
+        public string City;
+        public string State;
+        public int Zip;
+        public long PhoneNumber;
+        public string Email;
+        public string AddressBook;
+
+        public Model()
+        {
+
+        }
+        public Model(string addressbook, string firstName, string lastName, string address, string city, string state, int zip, long phoneNumber, string email)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Address = address;
+            City = city;
+            State = state;
+            Zip = zip;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            AddressBook = addressbook;
+        }
+        public string toString()
+        {
+            return "Address Book : " + AddressBook + "\n" + " " + "User Details Of " + FirstName + LastName + "\nAddress : " + Address
+
+                + "\nCity :" + City + "\nState : " + State + "\nZip : " + Zip + "\nPhoneNumber : " + PhoneNumber + "\nEmail : " + Email;
+        }
+    }
 }
+
+    
+

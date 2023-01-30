@@ -7,93 +7,119 @@ using System.Threading.Tasks;
 
 namespace AddressBook_244
 {
-    internal class AdressBookBuilder
+    public class AdressBookBuilder
     {
-        //Dictionary<string, Model> addressBookMap = new Dictionary<string, Model>();
-        ////public AdressBookBuilder()
-        ////{
-        ////    this.addressBookMap = new Dictionary<string, Person>();
-        ////}
+        List<Model> contactDetailsList;
+        private Dictionary<string, Model> contactDetailsMap;
+        private Dictionary<string, Dictionary<string, Model>> multipleAddressBookMap;
 
-        //public void AddAdressBook(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string eMail)
-        //{
-        //    Model model = new Model(firstName, lastName, address, city, state, zip, phoneNumber, eMail);
-        //    addressBookMap.Add(firstName, model);
-        //}
-        //public void DisplayAddressBook()
-        //{
-        //    foreach (var item in addressBookMap)
-        //    {
-        //        Console.WriteLine($" First Name :: {item.Value.firstName}");
-        //        Console.WriteLine($" Last Name :: {item.Value.lastName} ");
-        //        Console.WriteLine($" Address :: {item.Value.address} ");
-        //        Console.WriteLine($" City :: {item.Value.city} ");
-        //        Console.WriteLine($" State :: {item.Value.state} ");
-        //        Console.WriteLine($" Zip :: {item.Value.zip}");
-        //        Console.WriteLine($" Phone Number :: {item.Value.phoneNumber} ");
-        //        Console.WriteLine($" Email :: {item.Value.eMail} ");
-        //    }
-        //}
 
-        //public void EditContact(string name)
-        //{
-        //    foreach (var item in addressBookMap)
-        //    {
-        //        if (item.Key == name)
-        //        {
-        //            Console.WriteLine("Choose The Option :\n 1) First Name\n 2) last name\n 3) for adress\n 4) for city\n 5) for state\n 6) for zip\n 7) for phone number\n 8) for email ");
-        //            int change = Convert.ToInt32(Console.ReadLine());
+        public AdressBookBuilder()
+        {
+            contactDetailsList = new List<Model>();
+            contactDetailsMap = new Dictionary<string, Model>();
+            multipleAddressBookMap = new Dictionary<string, Dictionary<string, Model>>();
+        }
 
-        //            switch (change)
-        //            {
-        //                case 1:
-        //                    Console.WriteLine("Enter the first name");
-        //                    item.Value.firstName = Console.ReadLine();
-        //                    break;
-        //                case 2:
-        //                    Console.WriteLine("Enter the last name");
-        //                    item.Value.lastName = Console.ReadLine();
-        //                    break;
-        //                case 3:
-        //                    Console.WriteLine("Enter the address");
-        //                    item.Value.address = Console.ReadLine();
-        //                    break;
-        //                case 4:
-        //                    Console.WriteLine("Enter the city");
-        //                    item.Value.city = Console.ReadLine();
-        //                    break;
-        //                case 5:
-        //                    Console.WriteLine("Enter the state");
-        //                    item.Value.state = Console.ReadLine();
-        //                    break;
-        //                case 6:
-        //                    Console.WriteLine("Enter the zip");
-        //                    item.Value.zip = Console.ReadLine();
-        //                    break;
-        //                case 7:
-        //                    Console.WriteLine("Enter the phone number");
-        //                    item.Value.phoneNumber = Console.ReadLine();
-        //                    break;
-        //                case 8:
-        //                    Console.WriteLine("Enter the email");
-        //                    item.Value.eMail = Console.ReadLine();
-        //                    break;
+        public void ContactList()
+        {
+            Model personEntered = new Model();
+            Console.Write("Enter First name : ");
+            string firstName = Console.ReadLine();
+            personEntered.FirstName = Console.ReadLine();
 
-        //            }
-        //        }
-        //    }
-        //}
+            Console.Write("Enter Last name : ");
+            string lastName = Console.ReadLine();
 
-        //public void RemoveContact(string key)
-        //{
-        //    foreach (var item in addressBookMap)
-        //    {
-        //        if (item.Key == key)
-        //        {
-        //            addressBookMap.Remove(item.Key);
-        //        }
-        //    }
-        //}
+            if (contactDetailsList.Find(i => personEntered.Equals(i)) != null)
+            {
+                Console.WriteLine("Person already Exists, enter new person!");
+                return;
+            }
+
+            Console.WriteLine("Enter Address");
+            string address = Console.ReadLine();
+            personEntered.Address = Console.ReadLine();
+            Console.WriteLine("Enter City");
+            personEntered.City = Console.ReadLine();
+            Console.WriteLine("Enter State");
+            personEntered.State = Console.ReadLine();
+            Console.WriteLine("Enter Zip");
+            int zip = Convert.ToInt32(Console.ReadLine());
+            string zipString = zip.ToString();
+            personEntered.Zip = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter phoneNumber");
+            long phoneNumber = Convert.ToInt32(Console.ReadLine());
+            string phoneNumberString = phoneNumber.ToString();
+            personEntered.PhoneNumber = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine("Enter Email");
+            string email = Console.ReadLine();
+            personEntered.Email = Console.ReadLine();
+            contactDetailsList.Add(personEntered);
+        }
+        public List<Model> AddDetails(string addressBook, string firstName, string LastName, string address, string city, string state, int zip, long phoneNumber, string email)
+        {
+            Model contactDetails = new Model();
+            contactDetailsList.Add(contactDetails);
+            return contactDetailsList;
+        }
+        public void AddressBook(string addressBook)
+        {
+            multipleAddressBookMap.Add(addressBook, contactDetailsMap);
+        }
+        //Searching a Person
+        public Dictionary<string, Model> Search()
+        {
+            Console.Write(" Enter state : ");
+            string state = Console.ReadLine();
+            var stateCheck = contactDetailsList.FindAll(x => x.State == state);
+            Console.Write(" Enter city : ");
+            string city = Console.ReadLine();
+            var cityCheck = stateCheck.FindAll(x => x.City == city);
+            Console.Write(" Find Person : ");
+            string firstName = Console.ReadLine();
+            var person = cityCheck.Where(x => x.FirstName == firstName).FirstOrDefault(); //Returns the First Element 
+            if (person != null)
+            {
+                Console.WriteLine(firstName + " is  in " + city);
+            }
+            else
+            {
+                Console.WriteLine(firstName + " is not  in " + city);
+            }
+
+
+            Dictionary<string, Model> detailCity = new Dictionary<string, Model>();
+            Dictionary<string, Model> detailState = new Dictionary<string, Model>();
+            detailCity.Add(city, person);
+            detailState.Add(state, person);
+            foreach (KeyValuePair<string, Model> i in detailCity)
+            {
+                Console.WriteLine("City: {0}  {1}", i.Key, i.Value.toString());
+            }
+
+            foreach (KeyValuePair<string, Model> i in detailState)
+            {
+                Console.WriteLine("State: {0}  {1}", i.Key, i.Value.toString());
+            }
+
+            Console.WriteLine(detailCity.Count());
+            return detailCity;
+        }
+        public void Count()
+        {
+            Console.WriteLine(" Enter state ");
+            string state = Console.ReadLine();
+            var stateCheck = contactDetailsList.FindAll(x => x.State == state);
+            Console.WriteLine(" No of contacts from the state: " + state + " are " + stateCheck.Count);
+        }
+        public void ComputeDetails()
+        {
+            foreach (Model book in contactDetailsList)
+            {
+                Console.WriteLine(book.toString());
+            }
+        }
 
     }
 }
