@@ -38,12 +38,12 @@
                         break;
                     case 6:
                         AdressBookBuilder studentAddressBook = new AdressBookBuilder();
-                        studentAddressBook.AddDetails("Engineer", "Sartaj", "Khan", "Whitefield", "Nagpur", "Maharashtra", 4400002, 9424777313, "sartajikhan786@gmail.com");
-                        studentAddressBook.AddDetails("Engineer", "Abhishek", "Jadhav", "Bandra", "Mumbai", "Maharashtra", 560464, 1236547899, "sartajikhan786@gmail.com");
-                        studentAddressBook.AddDetails("Engineer", "Shivraj", "Gawda", "Malleshwaram", "Bengaluru", "karnataka", 560066, 9424464313, "sartajikhan786@gmail.com");
-                        studentAddressBook.AddDetails("Engineer", "Rajesh", "Singh", "GTNagar", "pune", "Maharashtra", 564566, 9433777313, "sartajikhan786@gmail.com");
-                        studentAddressBook.AddDetails("Engineer", "Vivek", "Singh", "HSR", "Bengaluru", "karnataka", 560996, 9424777315, "sartajikhan786@gmail.com");
-                        studentAddressBook.AddDetails("Engineer", "Siddhant", "Singh", "City Centre", "Noida", "U.P.", 458963, 9425477313, "sartajikhan786@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Shruti", "Khan", "Whitefield", "Nagpur", "Maharashtra", 440009, 7773944525, "shrutichitriv@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Abhishek", "Jadhav", "Bandra", "Mumbai", "Maharashtra", 560464, 1236547899, "shrutichitriv@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Shivraj", "Gawda", "Malleshwaram", "Bengaluru", "karnataka", 560066, 9424464313, "shrutichitriv@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Rajesh", "Singh", "GTNagar", "pune", "Maharashtra", 564566, 9433777313, "shrutichitriv@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Vivek", "Singh", "HSR", "Bengaluru", "karnataka", 560996, 9424777315, "shrutichitriv@gmail.com");
+                        studentAddressBook.AddDetails("Engineer", "Siddhant", "Singh", "City Centre", "Noida", "U.P.", 458963, 9425477313, "shrutichitriv@gmail.com");
                         Console.WriteLine("Enter Engineer Address Book Name : ");
                         string addressBook = Console.ReadLine();
                         studentAddressBook.AddressBook(addressBook);
