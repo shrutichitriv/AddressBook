@@ -1,16 +1,15 @@
-﻿namespace AddressBook_244
+﻿using static AddressBook_244.AddressBookMain;
+
+namespace AddressBook_244
 {
     class Program
     {
-
-        public static Dictionary<string, List<Model>> addressBook = new Dictionary<string, List<Model>>();
-        public static Dictionary<string, List<Model>> City = new Dictionary<string, List<Model>>();
-        public static Dictionary<string, List<Model>> State = new Dictionary<string, List<Model>>();
-
-        public static void Main(string[] args)
+        public static Dictionary<string, List<AddressBook>> addressBook = new Dictionary<string, List<AddressBook>>();
+        public static Dictionary<string, List<AddressBook>> City = new Dictionary<string, List<AddressBook>>();
+        public static Dictionary<string, List<AddressBook>> State = new Dictionary<string, List<AddressBook>>();
+        static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To Address Book Problem");
-
+            Console.WriteLine("Welcome To The Address Book Program");
             Console.WriteLine("Enter the number of address books: ");
             int noOfAddressBook = Convert.ToInt32(Console.ReadLine());
             int noOfBooks = 0;
@@ -18,7 +17,7 @@
             {
                 Console.WriteLine("Enter the address book name : ");
                 string addressbookname = Console.ReadLine();
-                Model addrBook = new Model();
+                AddressBook addrBook = new AddressBook();
                 Console.WriteLine("Enter the no of contacts in the address book: ");
                 int noOfContact = Convert.ToInt32(Console.ReadLine());
 
@@ -77,6 +76,9 @@
                         Console.WriteLine("Enter 2-To Search a person through a State");
                         Console.WriteLine("Enter 3-To view a person by state list or city list");
                         Console.WriteLine("Enter 4-Sort persons by name");
+                        Console.WriteLine("Enter 5-Sort persons by city name");
+                        Console.WriteLine("Enter 6-Sort persons by state name");
+                        Console.WriteLine("Enter 7-Sort persons by zip code");
                         int opt = Convert.ToInt32(Console.ReadLine());
                         switch (opt)
                         {
@@ -88,11 +90,20 @@
                                 SearchAddress(opt);
                                 break;
                             case 3:
-                                Model.CountCityorState();
+                                AddressBook.CountCityorState();
 
                                 break;
                             case 4:
-                                Model.SortByPersonName(addressBook);
+                                AddressBook.SortByPersonName(addressBook);
+                                break;
+                            case 5:
+                                AddressBook.SortBasedByCity(addressBook);
+                                break;
+                            case 6:
+                                AddressBook.SortBasedByState(addressBook);
+                                break;
+                            case 7:
+                                AddressBook.SortBasedByZipCode(addressBook);
                                 break;
                             default:
                                 Console.WriteLine("Invalid Option!");
@@ -110,7 +121,7 @@
                     addressBook.Add(addressbookname, addrBook.people);
                 }
                 noOfBooks++;
-                foreach (KeyValuePair<string, List<Model>> addr in addressBook)
+                foreach (KeyValuePair<string, List<AddressBook>> addr in addressBook)
                 {
                     Console.WriteLine("The address Books are:{0}", addr.Key);
 
@@ -123,22 +134,23 @@
                 {
                     Console.WriteLine("Enter the City Name");
                     city = Console.ReadLine();
-                    foreach (KeyValuePair<string, List<Model>> kvp in addressBook)
+                    foreach (KeyValuePair<string, List<AddressBook>> kvp in addressBook)
                     {
-                        Model.StoreCityList(kvp.Key, kvp.Value, city);
+                        AddressBook.StoreCityList(kvp.Key, kvp.Value, city);
 
                     }
                     if (option == 2)
                     {
                         Console.WriteLine("Enter the City Name");
                         state = Console.ReadLine();
-                        foreach (KeyValuePair<string, List<Model>> kvp in addressBook)
+                        foreach (KeyValuePair<string, List<AddressBook>> kvp in addressBook)
                         {
-                            Model.StoreStateList(kvp.Key, kvp.Value, state);
+                            AddressBook.StoreStateList(kvp.Key, kvp.Value, state);
                         }
                     }
                 }
             }
-        }   
+        }
+
     }
 }
